@@ -1,0 +1,52 @@
+﻿#modiBox {
+	border:2px dashed #217ABD;
+	width:150px;
+	padding:2px;
+	height:49px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-khtml-border-radius: 3px;
+	border-radius: 3px;
+	//background-color:rgba(115, 171, 214, 0.6);
+	background-color:#73ABD6;
+	overflow:hidden;
+	display:inline-block;
+}
+
+#modiBox img {
+	margin:0;
+	height:49px;
+}
+
+#couponCode{
+	font-size:12px;
+	color:#D5E8F7;
+}
+
+#modiText {
+	width:95px;
+	height:49px;
+	overflow:hidden;
+	float:right;
+	color:white;
+	font-size:14px;
+	padding-top:2px;
+}
+
+#modiButton, #modiButton:hover, #modiButton:focus
+{
+	text-decoration: none;
+	-webkit-transition: 400ms linear 0s;
+	-moz-transition: 400ms linear 0s;
+	-o-transition: 400ms linear 0s;
+	transition: 400ms linear 0s;
+	outline: 0 none;
+	text-shadow: -1px 1px 1px #79B2DE, 1px -1px 1px #79B2DE;
+}
+
+#modiButton:hover, #modiButton:focus
+{
+	color: #fff;
+	text-shadow: none;
+	
+}
