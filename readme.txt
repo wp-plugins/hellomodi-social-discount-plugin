@@ -8,7 +8,7 @@ Stable tag: 4.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-The helloModi Social Discount Plugin provides an easy solution for incorporating social media marketing into Wordpress commerce plugins. Current compatibility only with WP e-Commerce plugin.
+The helloModi Social Discount Plugin provides an easy solution for incorporating social media marketing into the WordpressWP e-commerce plugins.
 
 == Description ==
 
@@ -19,9 +19,9 @@ The helloModi Social Discount Plugin provides an easy solution for incorporating
 1. Activate the plugin through the 'Plugins' menu in WordPress
 2. Access settings page by going to Settings > Hello Modi.
 3. Enter appropriate information into correlating fields:
-3a. "Enter Site Name:" - The name of your site. This will display on a users' Facebook wall when a user enters a status update.
-3b. "Enter Site URL:" - The URL to the page you want the link in a users' update to point to. 
-3c. "Allow users to write their own status update?" - If you choose "yes", the user can write whatever they want onto their wall. If "No", whatever you write in the "Enter status text" box will be posted to the users wall.
+4. "Enter Site Name:" - The name of your site. This will display on a users' Facebook wall when a user enters a status update.
+5. "Enter Site URL:" - The URL to the page you want the link in a users' update to point to. 
+6. "Allow users to write their own status update?" - If you choose "yes", the user can write whatever they want onto their wall. If "No", whatever you write in the "Enter status text" box will be posted to the users wall.
 
 == Frequently Asked Questions ==
 
