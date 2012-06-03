@@ -8,11 +8,11 @@ Stable tag: 4.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-The helloModi Social Discount Plugin provides an easy solution for incorporating social media marketing into the WordpressWP e-commerce plugins.
+The helloModi Social Discount Plugin provides an easy solution for incorporating social media marketing into the WordpressWP e-commerce plugin.
 
 == Description ==
 
-The helloModi Social Discount Plugin provides an easy solution for incorporating social media marketing into Wordpress commerce plugins.
+The helloModi Social Discount Plugin provides an easy solution for incorporating social media marketing into the Wordpress WP e-commerce plugin.
 
 == Installation ==
 
