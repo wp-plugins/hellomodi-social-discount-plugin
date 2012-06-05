@@ -12,7 +12,10 @@ The helloModi Social Discount Plugin provides an easy solution for incorporating
 
 == Description ==
 
-The helloModi Social Discount Plugin provides an easy solution for incorporating social media marketing into the Wordpress WP e-commerce plugin.
+The helloModi Social Discount Plugin provides an easy solution for incorporating social media marketing into the Wordpress WP e-commerce plugin. 
+<p>The plugin allows store owners to offer discounts to shoppers in exchange forposting about their product on social networking sites.</p>
+Store owners have the ability to let the shopper post their own message or restrict the mesage to one written by the store owner.</p>
+The plugin is currently only compatible with WP-ecommerce. 
 
 == Installation ==
 
@@ -27,7 +30,9 @@ The helloModi Social Discount Plugin provides an easy solution for incorporating
 
 
 == Screenshots ==
-
+1. The coupon shortcode [modi] can be added to your checkout page. The coupon as shown will be displayed.
+2. A popup box will display that will allow users to login to Facebook.
+3. Once a user logs in, they will be able to post a status to their wall about your product. Once this is complete, they can claim their discount!
 
 == Changelog ==
 
