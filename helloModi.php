@@ -1,4 +1,6 @@
 <?php
+	global $wpdb;
+	
 	/*
 		Plugin Name: helloModi Social Discount
 		Plugin URI: http://hellomodi.com/
@@ -133,6 +135,15 @@
 	function hello_modi_html_page() {
 		
 	?>
+	<?php  
+	global $wpdb;
+	global $table_prefix;
+	if (!isset($wpdb->wpsc_coupon_codes)) {
+$wpdb->wpsc_coupon_codes = $table_prefix . 'wpsc_coupon_codes';
+}
+	?>
+	
+	
 	<div>
 		<h2>Hello Modi Options</h2>
 		
@@ -206,7 +217,8 @@
 	
 	function pullCoupons() {
 		global $wpdb;
-		$result = $wpdb->get_results("SELECT coupon_code FROM `wp_wpsc_coupon_codes`" ) ;
+	
+		$result = $wpdb->get_results("SELECT coupon_code FROM $wpdb->wpsc_coupon_codes" ) ;
 		
 		echo "Choose the coupon to use when a user successfully posts to Facebook<br/>";
 		echo '<select name="hello_modi_chosen_coupon">';
@@ -245,7 +257,7 @@
 	function addCoupon(){
 		global $wpdb;
 		
-		$likeCoupon = $wpdb->get_results( "SELECT * FROM `wp_wpsc_coupon_codes` WHERE coupon_code = '".get_option('hello_modi_chosen_coupon')."'" );
+$likeCoupon = $wpdb->get_results( "SELECT * FROM $wpdb->wpsc_coupon_codes WHERE coupon_code = '".get_option('hello_modi_chosen_coupon')."'" );
 		echo get_option('hello_modi_chosen_coupon');
 		
 		$newCode = createCode();
