@@ -58,7 +58,9 @@
 	
 	
 	/* A simple short-code function. */
-	function hello_modi_func( $atts ){		
+	function hello_modi_func( $atts ){	
+		$shortCodeOutput .= '';
+		
 		if(!isset($_SESSION['modi_sess'])){
 			$arr = str_split('ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890abcdefghijklmnopqrstuvwxyz1234567890'); 
 			shuffle($arr); 
@@ -77,32 +79,32 @@
 		
 		$val = soap_client($str);
 		
-		if(empty($val)) echo '<a id="modiButton" href="#" onClick="smPopup()">';
-		echo '<div id="modiBox">';
-		echo '<img src="'. site_url() . '/wp-content/plugins/helloModi/Modi.png" />';
-		echo '<div id="modiText">';
+		if(empty($val)) $shortCodeOutput .= '<a id="modiButton" href="#" onClick="smPopup()">';
+		$shortCodeOutput .= '<div id="modiBox">';
+		$shortCodeOutput .= '<img src="'. site_url() . '/wp-content/plugins/helloModi/Modi.png" />';
+		$shortCodeOutput .= '<div id="modiText">';
 		
 		if(!empty($val)) {
 			if(get_option('hello_modi_coupon_copy') == "off") {
-				echo "Coupon Code:<br/> ";
-				echo "<span id='couponCode'>" . get_option('hello_modi_chosen_coupon') . "</span>";
+				$shortCodeOutput .= "Coupon Code:<br/> ";
+				$shortCodeOutput .= "<span id='couponCode'>" . get_option('hello_modi_chosen_coupon') . "</span>";
 			} 
 			else {
 				if (!isset($_SESSION['code'])) $_SESSION['code']= addCoupon();
-				echo "Coupon Code:<br/> ";
-				echo "<span id='couponCode'>" . $_SESSION['code'] . "</span>";
+				$shortCodeOutput .= "Coupon Code:<br/> ";
+				$shortCodeOutput .= "<span id='couponCode'>" . $_SESSION['code'] . "</span>";
 			}
 		}
 		else {
-			echo "Click here for your discount";
+			$shortCodeOutput .= "Click here for your discount";
 		}
-		echo '</div>';
-		echo '</div>';
-		if(empty($val)) echo '</a>';
+		$shortCodeOutput .= '</div>';
+		$shortCodeOutput .= '</div>';
+		if(empty($val)) $shortCodeOutput .= '</a>';
 		
 		$thisURL = urlencode(currentURL());
 		
-		echo '<script type="text/javascript">	
+		$shortCodeOutput .= '<script type="text/javascript">	
 		<!--
 		
 		function smPopup() {
@@ -116,6 +118,7 @@
 		</script>
 		
 		';
+		return $shortCodeOutput;
 		
 	}
 	add_shortcode( 'modi', 'hello_modi_func' );
