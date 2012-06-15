@@ -30,7 +30,8 @@
 		add_option("hello_modi_chosen_coupon", 'Default', '', 'yes');
 		add_option("hello_modi_coupon_copy", "off", '', 'yes');
 		add_option("hello_modi_text_edit", "off", '', 'yes');
-		add_option("hello_modi_data", 'Default', '', 'yes');	
+		add_option("hello_modi_data", 'Default', '', 'yes');
+		add_option("hello_modi_platform", 'none', '', 'yes');
 	}
 	
 	function hello_modi_remove() {
@@ -41,6 +42,7 @@
 		delete_option('hello_modi_coupon_copy');
 		delete_option('hello_modi_text_edit');
 		delete_option('hello_modi_data');
+		delete_option('hello_modi_platform');
 	}
 	
 	function soap_client($modisess){
@@ -59,6 +61,7 @@
 	
 	/* A simple short-code function. */
 	function hello_modi_func( $atts ){	
+		
 		$shortCodeOutput .= '';
 		
 		if(!isset($_SESSION['modi_sess'])){
@@ -90,7 +93,9 @@
 				$shortCodeOutput .= "<span id='couponCode'>" . get_option('hello_modi_chosen_coupon') . "</span>";
 			} 
 			else {
-				if (!isset($_SESSION['code'])) $_SESSION['code']= addCoupon();
+				if (!isset($_SESSION['code']) && get_option('hello_modi_platform') == 'WPeCommerce') $_SESSION['code']= addCouponWPEComm();
+				if (!isset($_SESSION['code']) && get_option('hello_modi_platform') == 'WooCommerce') $_SESSION['code']= addCouponWoo();
+				
 				$shortCodeOutput .= "Coupon Code:<br/> ";
 				$shortCodeOutput .= "<span id='couponCode'>" . $_SESSION['code'] . "</span>";
 			}
@@ -139,19 +144,34 @@
 		
 	?>
 	<?php  
-	global $wpdb;
-	global $table_prefix;
-	if (!isset($wpdb->wpsc_coupon_codes)) {
-$wpdb->wpsc_coupon_codes = $table_prefix . 'wpsc_coupon_codes';
-}
+		global $wpdb;
+		global $table_prefix;
+		if (!isset($wpdb->wpsc_coupon_codes)) {
+			$wpdb->wpsc_coupon_codes = $table_prefix . 'wpsc_coupon_codes';
+		}
+		
 	?>
-	
-	
 	<div>
 		<h2>Hello Modi Options</h2>
 		
 		<form method="post" action="<?php echo $_SERVER["REQUEST_URI"];?>">
 			<?php wp_nonce_field('update-options'); ?>
+			
+			Which shopping cart platform are you using?<br/>
+			<input type="radio" name="hello_modi_platform" id="hello_modi_platform" value="none"  <?php if(get_option('hello_modi_platform') == 'none') echo "checked=''";  ?>/> None<br/>
+			<input type="radio" name="hello_modi_platform" id="hello_modi_platform" value="WPeCommerce"  <?php if(get_option('hello_modi_platform') == 'WPeCommerce') echo "checked=''";  ?>/> WP eCommerce<br/>
+			<input type="radio" name="hello_modi_platform" id="hello_modi_platform" value="WooCommerce"  <?php if(get_option('hello_modi_platform') == 'WooCommerce') echo "checked=''";  ?>/> WooCommerce <br/><br/>
+			
+			<b>
+			<?php 
+			if(get_option('hello_modi_platform') == 'none') echo "Please choose a Shopping Cart platform above.";
+			
+			if(get_option('hello_modi_platform') == 'WooCommerce') echo "Place the short code - [modi] - on your 'Cart' page";  
+			
+			if(get_option('hello_modi_platform') == 'WPeCommerce') echo "Place the short code - [modi] - on your 'CheckOut' page";
+			
+			?></b>
+			<br/><br/>
 			
 			Enter Site Name:
 			<br/>
@@ -185,6 +205,7 @@ $wpdb->wpsc_coupon_codes = $table_prefix . 'wpsc_coupon_codes';
 			<input type="hidden" name="page_options" value="hello_modi_coupon_copy" />
 			<input type="hidden" name="page_options" value="hello_modi_text_edit" />
 			<input type="hidden" name="page_options" value="hello_modi_data" />
+			<input type="hidden" name="page_options" value="hello_modi_platform" />
 			
 			<p>
 				<input type="submit" value="<?php _e('Save Changes') ?>" />
@@ -216,11 +237,52 @@ $wpdb->wpsc_coupon_codes = $table_prefix . 'wpsc_coupon_codes';
 		if(!empty($_POST['hello_modi_text_edit'])){
 			update_option("hello_modi_text_edit",$_POST['hello_modi_text_edit']);
 		}
+		if(get_option('hello_modi_platform') != $_POST['hello_modi_platform'] && !empty($_POST['hello_modi_platform'])) {
+			update_option("hello_modi_chosen_coupon",'Default');
+		}
+		if(!empty($_POST['hello_modi_platform'])){
+			update_option("hello_modi_platform",$_POST['hello_modi_platform']);
+			
+		}
 	}
 	
 	function pullCoupons() {
-		global $wpdb;
+		if(get_option('hello_modi_platform') == 'WPeCommerce') pullCouponsWPEComm();
+		if(get_option('hello_modi_platform') == 'WooCommerce') pullCouponsWoo();
+		
+	}
 	
+	function pullCouponsWoo() {
+		global $wpdb;
+		$result = $wpdb->get_results("SELECT post_title FROM $wpdb->posts WHERE post_type = 'shop_coupon'" ) ;
+		
+		echo "Choose the coupon to use when a user successfully posts to Facebook<br/>";
+		echo '<select name="hello_modi_chosen_coupon">';
+		$selected = get_option('hello_modi_chosen_coupon');
+		
+		foreach ( $result as $row ) 
+		{
+			if (preg_match('/^modi/', $row->post_title)) {
+				
+			}
+			else {
+				if ($selected == $row->post_title) {
+					echo '<option selected="selected" value="'.$row->post_title.'">'.$row->post_title.'</option>';
+					
+					} else {
+					echo '<option value="'.$row->post_title.'">'.$row->post_title.'</option>';
+					
+				}
+			}
+		}
+		if ($selected == 'Default') echo '<option selected="selected" value="Default">Not Set</option>';
+		echo "</select>";
+		
+	}
+	
+	function pullCouponsWPEComm () {
+		global $wpdb;
+		
 		$result = $wpdb->get_results("SELECT coupon_code FROM $wpdb->wpsc_coupon_codes" ) ;
 		
 		echo "Choose the coupon to use when a user successfully posts to Facebook<br/>";
@@ -230,7 +292,7 @@ $wpdb->wpsc_coupon_codes = $table_prefix . 'wpsc_coupon_codes';
 		foreach ( $result as $row ) 
 		{
 			if (preg_match('/^modi/', $row->coupon_code)) {
-			
+				
 			}
 			else {
 				if ($selected == $row->coupon_code) {
@@ -244,7 +306,6 @@ $wpdb->wpsc_coupon_codes = $table_prefix . 'wpsc_coupon_codes';
 		}
 		if ($selected == 'Default') echo '<option selected="selected" value="Default">Not Set</option>';
 		echo "</select>";
-		
 	}
 	
 	function createCode($length = 6) {
@@ -257,10 +318,61 @@ $wpdb->wpsc_coupon_codes = $table_prefix . 'wpsc_coupon_codes';
 		return "modi".$code;
 	}
 	
-	function addCoupon(){
+	function addCouponWoo() {
 		global $wpdb;
+		global $table_prefix;
+		$newCode = createCode();
 		
-$likeCoupon = $wpdb->get_results( "SELECT * FROM $wpdb->wpsc_coupon_codes WHERE coupon_code = '".get_option('hello_modi_chosen_coupon')."'" );
+		$likeCoupon = $wpdb->get_results( "SELECT * FROM $wpdb->posts WHERE post_title = '".get_option('hello_modi_chosen_coupon')."'" );
+		$IDnum = $wpdb->get_results( "SELECT ID FROM $wpdb->posts ORDER BY ID DESC" );
+		$thisID = $IDnum[0]->ID + 1;
+		
+		$likeCouponMeta = $wpdb->get_results( "SELECT * FROM $wpdb->postmeta WHERE post_id = ".$likeCoupon[0]->ID );
+		
+		$insert = $wpdb->insert(
+		$wpdb->posts,
+		array(
+		'post_author' => $likeCoupon[0]->post_author,
+		'post_title' => $newCode,
+		'post_status' => $likeCoupon[0]->post_status,
+		'comment_status' => $likeCoupon[0]->comment_status,
+		'ping_status' => $likeCoupon[0]->ping_status,
+		'post_parent' => 0,
+		'post_type' => $likeCoupon[0]->post_type,
+		'comment_count' => $likeCoupon[0]->comment_count,
+		'menu_order' => $likeCoupon[0]->menu_order
+		)
+		);
+		
+		
+		$size = count($likeCouponMeta);
+		while($size >= 1) {
+			$insert = $wpdb->insert(
+			$wpdb->postmeta,
+			array(
+			'post_id' => $thisID,
+			'meta_key' => $likeCouponMeta[$size]->meta_key,
+			'meta_value' => $likeCouponMeta[$size]->meta_value
+			)
+			);
+			$size--;
+		}
+		
+		
+		echo "<pre>";
+		var_dump($likeCouponMeta);
+		echo "</pre>";
+		
+		
+		
+		return $newCode;
+	}
+	
+	function addCouponWPEComm(){
+		global $wpdb;
+		global $table_prefix;
+		
+		$likeCoupon = $wpdb->get_results( "SELECT * FROM $wpdb->wpsc_coupon_codes WHERE coupon_code = '".get_option('hello_modi_chosen_coupon')."'" );
 		echo get_option('hello_modi_chosen_coupon');
 		
 		$newCode = createCode();
@@ -268,7 +380,7 @@ $likeCoupon = $wpdb->get_results( "SELECT * FROM $wpdb->wpsc_coupon_codes WHERE 
 		$end_date = date( 'Y-m-d' ) . " 23:59:59";
 		
 		$insert = $wpdb->insert(
-		'wp_wpsc_coupon_codes',
+		$table_prefix.'wpsc_coupon_codes',
 		array(
 		'coupon_code' => $newCode,
 		'value' => $likeCoupon[0]->value,
