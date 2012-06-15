@@ -8,11 +8,11 @@ Stable tag: 1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-The helloModi Social Discount Plugin provides an easy solution for incorporating social media marketing into the WordpressWP e-commerce plugin.
+The helloModi Social Discount Plugin provides an easy solution for incorporating social media marketing into the WooCommerce and WP e-commerce shopping platforms.
 
 == Description ==
 
-The helloModi Social Discount Plugin provides an easy solution for incorporating social media marketing into the Wordpress WP e-commerce plugin. 
+The helloModi Social Discount Plugin provides an easy solution for incorporating social media marketing into the WooCommerce and WP e-commerce shopping platforms. 
 <p>The plugin allows store owners to offer discounts to shoppers in exchange forposting about their product on social networking sites.</p>
 Store owners have the ability to let the shopper post their own message or restrict the mesage to one written by the store owner.</p>
 The plugin is currently only compatible with WP-ecommerce. 
