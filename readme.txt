@@ -1,18 +1,18 @@
 === helloModi Social Discount Plugin ===
 Contributors: helloModiTeam
 Donate link: http://hellomodi.com/
-Tags: social media, commmerce, wp e-commerce
+Tags: social media, wp e-commerce, cart, e-commerce, ecommerce, shop, discount, coupon, checkout, sale, store, woocommerce
 Requires at least: 2.0.2
 Tested up to: 3.3.2
-Stable tag: 1.0
+Stable tag: 1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-The helloModi Social Discount Plugin provides an easy solution for incorporating social media marketing into the WordpressWP e-commerce plugin.
+The helloModi Social Discount Plugin provides an easy solution for incorporating social media marketing into the WooCommerce and WP e-commerce shopping platforms.
 
 == Description ==
 
-The helloModi Social Discount Plugin provides an easy solution for incorporating social media marketing into the Wordpress WP e-commerce plugin. 
+The helloModi Social Discount Plugin provides an easy solution for incorporating social media marketing into the WooCommerce and WP e-commerce shopping platforms. 
 <p>The plugin allows store owners to offer discounts to shoppers in exchange forposting about their product on social networking sites.</p>
 Store owners have the ability to let the shopper post their own message or restrict the mesage to one written by the store owner.</p>
 The plugin is currently only compatible with WP-ecommerce. 
@@ -46,4 +46,4 @@ The plugin is currently only compatible with WP-ecommerce.
 
 Ordered list:
 
-1. Update Facebook status at checkout
+1. Update Facebook status at checkout!
