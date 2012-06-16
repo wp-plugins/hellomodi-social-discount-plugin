@@ -4,7 +4,7 @@ Donate link: http://hellomodi.com/
 Tags: social media, wp e-commerce, cart, e-commerce, ecommerce, shop, discount, coupon, checkout, sale, store, woocommerce
 Requires at least: 2.0.2
 Tested up to: 3.3.2
-Stable tag: 1.0
+Stable tag: 1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
