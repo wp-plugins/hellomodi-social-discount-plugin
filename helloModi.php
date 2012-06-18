@@ -113,7 +113,7 @@
 		<!--
 		
 		function smPopup() {
-		window.open( "http://hellomodi.com/smpc/index.php?m_id='.bin2hex($fbstring).'&m_te='.bin2hex($textEdit).'&m_sn='.bin2hex($siteName).'&m_su='.bin2hex($siteURL).'&ms='.$str.'&url='.$thisURL.'",
+		window.open( "http://www.hellomodi.com/smpc/index.php?m_id='.bin2hex($fbstring).'&m_te='.bin2hex($textEdit).'&m_sn='.bin2hex($siteName).'&m_su='.bin2hex($siteURL).'&ms='.$str.'&url='.$thisURL.'",
 		"myWindow", 
 		"status = 1, height = 372, width = 560, resizable = 0" )
 		}
