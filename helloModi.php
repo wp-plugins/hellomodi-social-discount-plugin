@@ -378,9 +378,9 @@ function hello_modi_html_page() {
 		}
 		
 		
-		echo "<pre>";
-		var_dump($likeCouponMeta);
-		echo "</pre>";
+		//echo "<pre>";
+		//var_dump($likeCouponMeta);
+		//echo "</pre>";
 		
 		
 		
