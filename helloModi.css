@@ -29,7 +29,7 @@
 	overflow:hidden;
 	float:right;
 	color:white;
-	font-size:14px;
+	font-size:12px !important;
 	padding-top:2px;
 }
 
