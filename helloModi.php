@@ -190,7 +190,7 @@ function hello_modi_html_page() {
 
 				<?php if(get_option('hello_modi_platform') != 'none') { ?>
 
-				Enter Site Name:
+				Enter the words which will link back to your store from the users post
 				<br/>
 				<input name="hello_modi_site_name" type="text" id="hello_modi_site_name" size="50" value="<?php echo get_option('hello_modi_site_name'); ?>" />
 				<br/><br/>
@@ -211,7 +211,7 @@ function hello_modi_html_page() {
 				<input type="radio" name="hello_modi_text_edit" id="hello_modi_text" value="on"  <?php if(get_option('hello_modi_text_edit') == 'on') echo "checked=''";  ?>/> Yes<br/>
 				<input type="radio" name="hello_modi_text_edit" id="hello_modi_text" value="off"  <?php if(get_option('hello_modi_text_edit') == 'off') echo "checked=''";  ?>/> No<br/>
 				<br/>
-				Enter the Facebook Post
+				Enter the forced Facebook Post
 				<br/>
 				<textarea id="hello_modi_data" name="hello_modi_data" rows="4" cols="65" style="resize: none;" ><?php echo get_option('hello_modi_data');?></textarea>
 
