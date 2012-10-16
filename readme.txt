@@ -3,8 +3,8 @@ Contributors: helloModiTeam
 Donate link: http://hellomodi.com/
 Tags: social media, wp e-commerce, cart, e-commerce, ecommerce, shop, discount, coupon, checkout, sale, store, woocommerce
 Requires at least: 2.0.2
-Tested up to: 3.3.2
-Stable tag: 1.2
+Tested up to: 3.4.2
+Stable tag: 1.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -46,6 +46,9 @@ Store owners have the ability to let the shopper post their own message or restr
 
 = 1.2 =
 * Fixed double click issue with Facebook login button
+
+= 1.3 =
+* Display issues and ease of use
 
 
 == Arbitrary section ==
